@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  title: Personalization Service API
+  version: 1.0.0
+  description: API for personalized recommendations and preferences
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+  /recommendations:
+    get:
+      summary: Get recommendations for a user
+      parameters:
+        - in: query
+          name: userId
+          schema:
+            type: string
+          required: true
+          description: User ID
+      responses:
+        '200':
+          description: Personalized recommendations
+  /preferences:
+    post:
+      summary: Save user preferences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                preferences:
+                  type: object
+      responses:
+        '201':
+          description: Preferences saved
